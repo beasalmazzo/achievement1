@@ -1,0 +1,27 @@
+/*
+
+*/
+
+
+:root {
+    --h__font-family: 'VT323', sans-serif;
+    --h__text-color: black;
+    --h1__font-size: 30px;
+    --h2__font-size: 25px;
+    
+
+}
+
+h1 {
+    font-family: var(--h__font-family);
+    font-size: var(--h1__font-size);
+    color: var(--h__text-color);
+    text-align: center;
+}
+
+h2 {
+    font-family: var(--h__font-family);
+    font-size: var(--h2__font-size);
+    color: var(--h__text-color);
+    text-align: center;
+}
