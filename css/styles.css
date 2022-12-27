@@ -4,14 +4,25 @@
 
 
 :root {
+
     --h__font-family: 'VT323', sans-serif;
     --h__text-color: black;
     --h1__font-size: 30px;
     --h2__font-size: 25px;
-    
+    --triangle-height: 7px;
+
+
+   
 
 }
 
+.header {
+    margin: 40px 20px;
+}
+
+
+
+/*basic style for h1*/
 h1 {
     font-family: var(--h__font-family);
     font-size: var(--h1__font-size);
@@ -19,9 +30,39 @@ h1 {
     text-align: center;
 }
 
+/*basic style for h2*/
 h2 {
     font-family: var(--h__font-family);
     font-size: var(--h2__font-size);
     color: var(--h__text-color);
     text-align: center;
+}
+
+/*adds fade-in-and-out animation to the triangle in the title*/
+@keyframes triangle-fadeinout {
+    0% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/*adds fade-in-and-out animation to the triangle in the title*/
+#triangle-animation {
+    transform: rotate(180deg);
+    height: var(--triangle-height);
+
+    animation-name: triangle-fadeinout;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
 }
