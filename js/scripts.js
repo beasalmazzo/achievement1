@@ -1,23 +1,34 @@
 
-/*on Exercise 2 the declaration of the variable was incorrect, so I fixed it now.
-Before:
-pokemonList = []; 
+let pokemonRepository = (function() {
 
-let pokemonList = [  ------------ 'let' in the incorrect line
+    let pokemonList = [
+        { name: 'Charmander', height: 0.6, type: ['fire']},
+        { name: 'Bulbasaur', height: 0.7, type: ['grass', 'poison']},
+        { name: 'Squirtle', height: 0.5, type: ['water']}
+    ];
 
-*/
-let pokemonList = [];
+    let add = function(item){
+        pokemonList.push(item);
+    }
 
-pokemonList = [
-    { name: 'Charmander', height: 0.6, type: ['fire']},
-    { name: 'Bulbasaur', height: 0.7, type: ['grass', 'poison']},
-    { name: 'Squirtle', height: 0.5, type: ['water']}
-];
+    let getAll = function(){
+        return pokemonList; 
+    }
 
-//write on the screen a list of pokemons and their heights. Wrote the function with "item" to make it reusable for other types of lists
-  function printList(item){
-    document.write('<p>'+item.name + ' (height: ' + item.height +', type: ' + item.type + ')'+'</p>');
+    return {
+        add: add,
+        getAll: getAll
+    };
+})();
+
+console.log(pokemonRepository.getAll());  //why doesn't it work with document.write instead of console.log? it prints [object Object],[object Object],[object Object]
+pokemonRepository.add({name:'pikachu'});
+document(pokemonRepository.getAll());
+
+
+//write on the screen a list of pokemons and their heights
+function printPokemonList(pokemon){
+    document.write('<p>'+pokemon.name + ' (height: ' + pokemon.height +', type: ' + pokemon.type + ')'+'</p>');
   }
-  pokemonList.forEach(printList);
-
+pokemonRepository.getAll().forEach(printPokemonList);
 
