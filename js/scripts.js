@@ -14,14 +14,10 @@ pokemonList = [
     { name: 'Squirtle', height: 0.5, type: ['water']}
 ];
 
-//write on the screen a list of pokemons and their heights
-for (i=0 ; i<pokemonList.length ; i++){
-    if (pokemonList[i].height > 0.6) {
-        document.write(`${pokemonList[i].name} (height: ${pokemonList[i].height}) - Wow, that's big!\n`);
-        // why is \n acting like a space instead of an enter?
-    }   
-    else {
-        document.write(`${pokemonList[i].name} (height: ${pokemonList[i].height})\n`);
-    }
-}
-    
+//write on the screen a list of pokemons and their heights. Wrote the function with "item" to make it reusable for other types of lists
+  function printList(item){
+    document.write('<p>'+item.name + ' (height: ' + item.height +', type: ' + item.type + ')'+'</p>');
+  }
+  pokemonList.forEach(printList);
+
+
