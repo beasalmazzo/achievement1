@@ -66,3 +66,48 @@ h2 {
     animation-duration: 2s;
     animation-iteration-count: infinite;
 }
+
+.pokemon-button {
+    background-color: rgb(247, 66, 66);
+    color: rgba(255, 255, 255, 0.787);
+    border: 1.5px solid grey;
+    padding: 16px;
+    margin: 3px;
+    width: 150px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    
+
+
+   /* 
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; 
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid #4caf50;*/
+}
+
+.pokemon-list {
+    margin: auto;
+    list-style-type: none;
+    text-align: center;
+}
+
+.pokemon-list__container {
+    display: flex;
+    padding: 15px;
+    width: 600x;
+    margin: 25px;
+    /* uncomment to visualize the container and understand the changes better 
+    border: 3px solid black;
+    */
+}
