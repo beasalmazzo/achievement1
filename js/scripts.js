@@ -1,6 +1,9 @@
 
 let pokemonRepository = (function() {
 
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+
     //creates a button for each pokemon in the list of pokemons
     //only ul is in the html, the rest is here
     let addListItem = function (pokemon){
@@ -18,20 +21,17 @@ let pokemonRepository = (function() {
 
     //when button is clicked, the details of the pokemon are shown (calls the function)
     function buttonEventListener (button, pokemon){
-        button.addEventListener('click', function () {      //why doesn't it work it I pass "pokemon" as the argument of the function?
+        button.addEventListener('click', function () {    
             showDetails(pokemon);
         });
-}
-    //to show details of a pokemon
-    function showDetails(pokemon){
-        console.log(pokemon);
     }
 
-    let pokemonList = [
-        { name: 'Charmander', height: 0.6, type: ['fire']},
-        { name: 'Bulbasaur', height: 0.7, type: ['grass', 'poison']},
-        { name: 'Squirtle', height: 0.5, type: ['water']}
-    ];
+    //to show details of a pokemon
+    function showDetails(pokemon) {
+        loadDetails(pokemon).then(function () {
+            console.log(pokemon);
+        });
+    }
 
     //check if the new pokemon's details are an object and include all necessary keys
     //then add it to the list
@@ -39,9 +39,8 @@ let pokemonRepository = (function() {
         
         if(typeof pokemon === 'object' && 
             pokemon !== null &&
-            Object.keys(pokemon).includes("name") &&
-            Object.keys(pokemon).includes("type") &&
-            Object.keys(pokemon).includes("height")) {
+            Object.keys(pokemon).includes("name") /*&&
+            Object.keys(pokemon).includes("detailsUrl")*/) {
                 pokemonList.push(pokemon);               
         }
         else {
@@ -53,21 +52,52 @@ let pokemonRepository = (function() {
         return pokemonList; 
     }
 
+    //fetches the pokemons data from the api adds it to the pokemon list
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach(function (item) {
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+                };
+                add(pokemon);
+            });
+        }).catch(function (e) {
+            console.error(e);
+        })
+      }
+
+    function loadDetails(item) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            // Now we add the details to the item
+            item.imageUrl = details.sprites.front_default;
+            item.height = details.height;
+            item.types = details.types;
+        }).catch(function (e) {
+            console.error(e);
+        });
+    }    
+
     //access to the local variables from outside 
     return {
         add: add,
         getAll: getAll,
-        addListItem: addListItem
+        addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails
     };
 })();
 
+pokemonRepository.loadList().then(function() {
+    // Now the data is loaded!
+    pokemonRepository.getAll().forEach(function(pokemon){
+        pokemonRepository.addListItem(pokemon);
+    });
+});
+
 //console.log(pokemonRepository.getAll());  
-
-//triggers the function that creates the pokemons buttons 
-function printPokemonList(pokemon){
-   
-    pokemonRepository.addListItem(pokemon);
-
-}
-pokemonRepository.getAll().forEach(printPokemonList);
-
