@@ -18,7 +18,6 @@ let pokemonRepository = (function() {
         buttonImage.setAttribute('src', pokemon.imageUrl);
         buttonImage.setAttribute('alt', 'picture of the pokemon');
 
-
         //add pokemon name to the button
         button.innerText = pokemon.name;
         button.classList.add('pokemon-button'); //to be able to style it

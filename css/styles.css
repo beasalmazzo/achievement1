@@ -1,6 +1,8 @@
 /*
-
+color: #1B9AAA kinda green/blue
 */
+
+
 
 
 :root {
@@ -14,12 +16,16 @@
     --p__text-color: black;
     --p__font-size: 25x;
     --modal__background-color: pink;
-    --pokemon-button__background-color: rgb(247, 66, 66);
-   
+    --pokemon-button__background-color: #71677C;
+    margin: 0;
+    padding: 0;
+    background-color: #1B9AAA;
 }
 
 .header {
-    margin: 40px 20px;
+    margin: 0;
+    padding: 0;
+    background-color: #1B9AAA;
 }
 
 
@@ -93,9 +99,11 @@ p {
 }
 
 .pokemon-list {
+    display: inline-block;
     margin: auto;
     list-style-type: none;
-    text-align: center;
+    padding: 0;
+    /*text-align: center;*/
 }
 
 .pokemon-list__container {
@@ -103,8 +111,8 @@ p {
     display: flex;
     padding: 15px;
     width: auto;
-    margin: 25px;
-
+    /*margin: 15px;*/
+    background-color: #ffffff;
     border: 3px solid black;  
 }
 
@@ -120,7 +128,7 @@ p {
     padding: 20px; /*this prevents the modal to touch the screen border*/
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 229, 255, 0.8);
+    background-color: #1B9AAA;
     z-index: 999; 
 }
 
@@ -130,14 +138,15 @@ p {
     border-color: red;
     padding: 15px;
     margin: auto;
-    width: 100%;
+    width: 70%;
+    min-width: 300px;
     max-width: 500px; /*re-access after testing for mobile*/
     background-color: var(--modal__background-color);
 }
 
 /*style for the pokemon picture inside the modal*/
 #image-container {
-    border: 3px solid black;
+    /*border: 3px solid black;*/
     margin: auto;
     width: fit-content;  
 }
@@ -148,7 +157,6 @@ p {
 
 #pokemon-details{
     margin: auto;
-    border: 2px solid black;
     text-align: center;
 }
 
@@ -166,4 +174,7 @@ p {
 .modal-close:hover {
     text-decoration: none;
 }
+
+
+
 
