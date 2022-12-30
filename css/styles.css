@@ -10,8 +10,9 @@
     --h1__font-size: 30px;
     --h2__font-size: 25px;
     --triangle-height: 7px;
-
-
+    --p__font-family: 'Work Sans', sans-serif;
+    --p__text-color: black;
+    --p__font-size: 25x;
    
 
 }
@@ -36,6 +37,12 @@ h2 {
     font-size: var(--h2__font-size);
     color: var(--h__text-color);
     text-align: center;
+}
+
+p {
+    font-family: var(--p__font-family);
+    font-size: var(--p__font-size);
+    color: var(--p__font-color);
 }
 
 /*adds fade-in-and-out animation to the triangle in the title*/
@@ -77,23 +84,7 @@ h2 {
     text-align: center;
     font-size: 16px;
     cursor: pointer;
-    
 
-
-   /* 
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  -webkit-transition-duration: 0.4s; 
-  transition-duration: 0.4s;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid #4caf50;*/
 }
 
 .pokemon-list {
@@ -103,26 +94,16 @@ h2 {
 }
 
 .pokemon-list__container {
+    box-sizing: border-box;
     display: flex;
     padding: 15px;
-    width: 600x;
+    width: auto;
     margin: 25px;
-    /* uncomment to visualize the container and understand the changes better 
-    border: 3px solid black;
-    */
+
+    border: 3px solid black; 
+    
 }
 
-
-/*test modal button*/
-#pokemon-button {
-    padding: 15px;
-    background-color: green;
-    color: white;
-    width: 200px;
-    margin:auto;
-    display: flex;
-    justify-content: center;
-}
 
 #modal-container {
     display: none;
@@ -133,8 +114,33 @@ h2 {
     position: fixed;
     top: 0;
     left: 0;
+    padding: 20px; /*this prevents the modal to touch the screen border*/
     width: 100%;
     height: 100%;
     background-color: rgba(0, 229, 255, 0.8);
     z-index: 999; 
+}
+
+#modal {
+    box-sizing: border-box; /*add margin and padding in the calculation of the size*/
+    border-style: solid;
+    border-color: red;
+    padding: 15px;
+    margin: auto;
+    width: 100%;
+    max-width: 500px; /*re-access after testing for mobile*/
+    background-color: pink;
+
+}
+
+/*style for the pokemon picture inside the modal*/
+#image-container {
+    border: 3px solid black;
+    margin: auto;
+    width: fit-content;
+    
+}
+
+#pokemon-picture {
+    width: 200px;
 }

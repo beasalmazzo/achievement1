@@ -1,5 +1,3 @@
-
-
 let pokemonRepository = (function() {
 
     let pokemonList = [];
@@ -40,10 +38,57 @@ let pokemonRepository = (function() {
 
                 (function() {
 
+                    //pops up the modal by adding class is-visible
                     let modalContainer = document.querySelector('#modal-container');
-                    console.log('test1');
+                    modalContainer.innerHTML = '';
                     modalContainer.classList.add('is-visible');
 
+                    //create modal div
+                    let modal = document.createElement('div');
+                    modal.setAttribute('id', 'modal');
+                    modalContainer.appendChild(modal);
+                    
+                    //create structuce inside modal
+                    //insert pokemon name
+                    let titleElement = document.createElement('h1');
+                    titleElement.setAttribute('id', 'title'); //not necessary because of above line. Unless I want to use the id for styling
+                    modal.appendChild(titleElement);
+                    titleElement.innerText = pokemon.name;
+                    //create image container
+                    let imageContainer = document.createElement('div');
+                    imageContainer.setAttribute('id', 'image-container');
+                    modal.appendChild(imageContainer);
+                    //add pokemon image to modal
+                    let imageElement = document.createElement('img');
+                    imageElement.setAttribute('id', 'pokemon-picture');
+                    imageContainer.appendChild(imageElement);
+                    imageElement.setAttribute('src', pokemon.imageUrl);
+                    imageElement.setAttribute('alt', 'picture of the selected pokemon');
+                    //insert pokemon details
+                    let contentElement = document.createElement('p');
+                    contentElement.setAttribute('id', 'pokemon-details');
+                    modal.appendChild(contentElement);
+                    contentElement.innerText = 'Height: ' + pokemon.height +  '\nTypes: ' + newTypes(pokemon);
+
+                    function newTypes (pokemon){
+
+                        let type1 = pokemon.types[0].type;
+                        if (pokemon.types.length > 1){
+                            let type2 = pokemon.types[1].type;
+                            return `${type1.name} / ${type2.name}`;
+                        }
+                        else{
+                            return type1.name;
+                        }
+
+                    }
+                    newTypes (pokemon);
+
+                    /*document.createElement('button');
+                    let closeButtonElement = document.querySelector('button');
+                    closeButtonElement.classList.add('close-button');*/
+                    
+                    
 
                     console.log(pokemon);
 
