@@ -9,11 +9,22 @@ let pokemonRepository = (function() {
         let newList = document.querySelector('ul'); 
         let listItem = document.createElement('li');
         let button = document.createElement('button');
+
+        //////Why don't the images appear?
+        //add image to the button
+        let buttonImage = document.createElement('img');
+        buttonImage.setAttribute('id', 'pokemon-picture'); //same as picture in the modal
+        button.appendChild(buttonImage);
+        buttonImage.setAttribute('src', pokemon.imageUrl);
+        buttonImage.setAttribute('alt', 'picture of the pokemon');
+
+
+        //add pokemon name to the button
         button.innerText = pokemon.name;
         button.classList.add('pokemon-button'); //to be able to style it
         listItem.appendChild(button);
         newList.appendChild(listItem);
-
+    
        //triggers the event listener on the button
         buttonEventListener (button, pokemon);
     }
@@ -51,10 +62,27 @@ let pokemonRepository = (function() {
                 closeButtonElement.classList.add('modal-close');
                 modal.appendChild(closeButtonElement);
                 closeButtonElement.innerText = 'Close';
-                closeButtonElement.addEventListener('click', () => {
-                    modalContainer.classList.remove('is-visible');
+                //button to close the modal when clicked
+                closeButtonElement.addEventListener('click', hideModal);
+                //close the modal when ESC is pressed
+                window.addEventListener('keydown', (e) => {  
+                    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')){
+                        hideModal();
+                    }
                 });
-                
+                //close the modal when there is a click on the modal-container
+                modalContainer.addEventListener('click', (e) => {
+                    let target = e.target;
+                    if (target === modalContainer){
+                        hideModal();
+                    }
+                });
+
+                function hideModal() {
+                    modalContainer.classList.remove('is-visible');
+                }
+
+
                 ///insert pokemon name
                 let titleElement = document.createElement('h1');
                 titleElement.setAttribute('id', 'title'); //not necessary because of above line. Unless I want to use the id for styling
@@ -93,20 +121,7 @@ let pokemonRepository = (function() {
                     }
                 }
 
-                
-
-                
-
-                console.log(pokemon);
-
             })();
-               
-
-               
-
-
-
-            //////////////////////////////
 
         });
     }
