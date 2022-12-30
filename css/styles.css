@@ -111,3 +111,30 @@ h2 {
     border: 3px solid black;
     */
 }
+
+
+/*test modal button*/
+#pokemon-button {
+    padding: 15px;
+    background-color: green;
+    color: white;
+    width: 200px;
+    margin:auto;
+    display: flex;
+    justify-content: center;
+}
+
+#modal-container {
+    display: none;
+}
+
+#modal-container.is-visible {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 229, 255, 0.8);
+    z-index: 999; 
+}

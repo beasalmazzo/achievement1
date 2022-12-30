@@ -1,4 +1,5 @@
 
+
 let pokemonRepository = (function() {
 
     let pokemonList = [];
@@ -28,8 +29,30 @@ let pokemonRepository = (function() {
 
     //to show details of a pokemon
     function showDetails(pokemon) {
+          
         loadDetails(pokemon).then(function () {
-            console.log(pokemon);
+            
+            //modal goes here
+            //////////////////////////////
+
+
+               
+
+                (function() {
+
+                    let modalContainer = document.querySelector('#modal-container');
+                    console.log('test1');
+                    modalContainer.classList.add('is-visible');
+
+
+                    console.log(pokemon);
+
+                })();
+
+
+
+            //////////////////////////////
+
         });
     }
 
@@ -39,8 +62,8 @@ let pokemonRepository = (function() {
         
         if(typeof pokemon === 'object' && 
             pokemon !== null &&
-            Object.keys(pokemon).includes("name") /*&&
-            Object.keys(pokemon).includes("detailsUrl")*/) {
+            Object.keys(pokemon).includes("name") &&
+            Object.keys(pokemon).includes("detailsUrl")) {
                 pokemonList.push(pokemon);               
         }
         else {
