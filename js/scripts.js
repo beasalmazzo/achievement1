@@ -10,19 +10,20 @@ let pokemonRepository = (function() {
         let listItem = document.createElement('li');
         let button = document.createElement('button');
 
+        //add pokemon name to the button
+        button.innerText = 'pokemon.name';
+        button.classList.add('pokemon-button'); //to be able to style it
+        listItem.appendChild(button);
+        newList.appendChild(listItem);
+
         //////Why don't the images appear?
         //add image to the button
         let buttonImage = document.createElement('img');
         buttonImage.setAttribute('id', 'pokemon-picture'); //same as picture in the modal
         button.appendChild(buttonImage);
         buttonImage.setAttribute('src', pokemon.imageUrl);
+        console.log(pokemon.imageUrl);
         buttonImage.setAttribute('alt', 'picture of the pokemon');
-
-        //add pokemon name to the button
-        button.innerText = pokemon.name;
-        button.classList.add('pokemon-button'); //to be able to style it
-        listItem.appendChild(button);
-        newList.appendChild(listItem);
     
        //triggers the event listener on the button
         buttonEventListener (button, pokemon);
