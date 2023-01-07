@@ -19,12 +19,10 @@ color: #1B9AAA kinda green/blue
     --pokemon-button__background-color: #71677C;
     margin: 0;
     padding: 0;
-    background-color: #1B9AAA;
+    border: 0;
 }
 
 .header {
-    margin: 0;
-    padding: 0;
     background-color: #1B9AAA;
 }
 
