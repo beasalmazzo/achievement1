@@ -5,24 +5,24 @@ let pokemonRepository = (function() {
 
     //creates a button for each pokemon in the list of pokemons
     //only ul is in the html, the rest is here
-    let addListItem = function (pokemon){
+    let addListItem = async function (pokemon){
         let newList = document.querySelector('ul'); 
         let listItem = document.createElement('li');
         let button = document.createElement('button');
 
         //add pokemon name to the button
-        button.innerText = 'pokemon.name';
+        button.innerText = pokemon.name;
         button.classList.add('pokemon-button'); //to be able to style it
         listItem.appendChild(button);
         newList.appendChild(listItem);
 
         //////Why don't the images appear?
         //add image to the button
+        const pokemonDetail = await loadDetails(pokemon);
         let buttonImage = document.createElement('img');
         buttonImage.setAttribute('id', 'pokemon-picture'); //same as picture in the modal
         button.appendChild(buttonImage);
         buttonImage.setAttribute('src', pokemon.imageUrl);
-        console.log(pokemon.imageUrl);
         buttonImage.setAttribute('alt', 'picture of the pokemon');
     
        //triggers the event listener on the button
