@@ -7,20 +7,13 @@ let pokemonRepository = (function() {
     //only ul is in the html, the rest is here
     let addListItem = async function (pokemon){
         let newList = document.querySelector('ul'); 
-        let listItem = document.createElement('li');
-        let button = document.createElement('button');
-        listItem.classList.add('group-list-item'); //bootstrap
-        button.classList.add('btn'); //bootstrap
-        button.classList.add('btn-primary');  //bootstrap
+        let listItem = $('<li class="list-group-item"></li>');
+        let button = $('<button type="button" class="btn btn-primary pokemon-button" data-toggle="modal" data-target="#pokemon-modal">' + pokemon.name + '</button>');
 
-        //add pokemon name to the button
-        button.innerText = pokemon.name;
-        button.classList.add('pokemon-button'); //to be able to style it
         listItem.appendChild(button);
         newList.appendChild(listItem);
 
-        //////Why don't the images appear?
-        //add image to the button
+        //add image to the button (name was added on <button>)
         const pokemonDetail = await loadDetails(pokemon);
         let buttonImage = document.createElement('img');
         buttonImage.setAttribute('id', 'pokemon-picture'); //same as picture in the modal
@@ -29,14 +22,9 @@ let pokemonRepository = (function() {
         buttonImage.setAttribute('alt', 'picture of the pokemon');
     
        //triggers the event listener on the button
-        buttonEventListener (button, pokemon);
-    }
-
-    //when button is clicked, the details of the pokemon are shown (calls the function)
-    function buttonEventListener (button, pokemon){
-        button.addEventListener('click', function () {    
+        button.on('click', function() {
             showDetails(pokemon);
-        });
+        }); 
     }
 
     //to show details of a pokemon
@@ -48,67 +36,22 @@ let pokemonRepository = (function() {
             //////////////////////////////
 
             (function() {
-
-                //pops up the modal by adding class is-visible
-                let modalContainer = document.querySelector('#modal-container');
-                modalContainer.innerHTML = '';
-                modalContainer.classList.add('is-visible');
-
-                //create modal div
-                let modal = document.createElement('div');
-                modal.setAttribute('id', 'modal');
-                modalContainer.appendChild(modal);
-                
-                ///create structuce inside modal (all /// comments are part of this 'group')
-                ///create close button
-                let closeButtonElement = document.createElement('button');
-                closeButtonElement.classList.add('modal-close');
-                modal.appendChild(closeButtonElement);
-                closeButtonElement.innerText = 'Close';
-                //button to close the modal when clicked
-                closeButtonElement.addEventListener('click', hideModal);
-                //close the modal when ESC is pressed
-                window.addEventListener('keydown', (e) => {  
-                    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')){
-                        hideModal();
-                    }
-                });
-                //close the modal when there is a click on the modal-container
-                modalContainer.addEventListener('click', (e) => {
-                    let target = e.target;
-                    if (target === modalContainer){
-                        hideModal();
-                    }
-                });
-
-                function hideModal() {
-                    modalContainer.classList.remove('is-visible');
-                }
-
+               
+                let modalTitle = $('.modal-title');
+                let modalBody = $('.modal-body');
 
                 ///insert pokemon name
-                let titleElement = document.createElement('h1');
-                titleElement.setAttribute('id', 'title'); //not necessary because of above line. Unless I want to use the id for styling
-                modal.appendChild(titleElement);
-                titleElement.innerText = pokemon.name;
-                
-                ///create image container
-                let imageContainer = document.createElement('div');
-                imageContainer.setAttribute('id', 'image-container');
-                modal.appendChild(imageContainer);
+                modalTitle.text(pokemon.name);
+                modalTitle.setAttribute('id', 'title'); //not necessary because of above line. Unless I want to use the id for styling
                 
                 ///add pokemon image to modal
-                let imageElement = document.createElement('img');
-                imageElement.setAttribute('id', 'pokemon-picture');
-                imageContainer.appendChild(imageElement);
-                imageElement.setAttribute('src', pokemon.imageUrl);
-                imageElement.setAttribute('alt', 'picture of the selected pokemon');
-                
+                let pokemonImage = $('<img class="pokemon picture" src="'+ pokemon.imageUrl +'" alt="picture of the selected pokemon"/>');
+                let pokemonDetails = $('<p>Height: '+ pokemon.height/10 + ' m\nTypes: '+ newTypes(pokemon) +'</p>');
                 ///insert pokemon details
-                let contentElement = document.createElement('div');
-                contentElement.setAttribute('id', 'pokemon-details');
-                modal.appendChild(contentElement);
-                contentElement.innerText = 'Height: ' + pokemon.height/10 +  ' m\nTypes: ' + newTypes(pokemon);
+          
+                modalBody.append(pokemonImage);
+                modalBody.append(pokemonDetails);
+
 
                 ///return types of pokemons (because pokemon.types is an object)
                 function newTypes (pokemon){

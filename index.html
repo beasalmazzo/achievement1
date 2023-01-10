@@ -7,37 +7,46 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
 
     <header>
-
-      <nav class="navbar fixed-top navbar-light bg-light">
-        <a class="navbar-brand" href="#">Back to the top</a>
-      </nav>
-
-     
-
-    </header>
-
-    <main>
       <!--website title-->
-      <div class="title">
+      <div class="header position-fixed">
         <h1>Every journey begins with a <span style="color:red">choice</span>.</h1>
         <h2>Choose wisely...
           <!--add triangle for animation-->
           <svg id="triangle-animation" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><title/><path d="M464,464H48a16,16,0,0,1-14.07-23.62l208-384a16,16,0,0,1,28.14,0l208,384A16,16,0,0,1,464,464Z"/></svg>
         </h2>
       </div>
+    </header>
 
-
+    <main>
       <div class="pokemon-list__container">
         <ul class="pokemon-list list-group"></ul>
       </div>
 
-      <div id="modal-container"></div>
+      <!--   <div id="modal-container"></div>   -->
 
-       
+      
+
+      <!-- Modal -->
+      <div class="modal fade" id="pokemon-modal" tabindex="-1" role="dialog" aria-labelledby="pokemon-modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title"></h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+          
+            </div>
+          </div>
+        </div>
+      </div>
       
       
     </main>
