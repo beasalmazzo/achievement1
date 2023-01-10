@@ -23,12 +23,9 @@ color: #1B9AAA kinda green/blue
 }
 
 .header {
-    margin: 0;
-    padding: 0;
     background-color: #1B9AAA;
+    width: 100%;
 }
-
-
 
 /*basic style for h1*/
 h1 {
@@ -114,6 +111,7 @@ p {
     /*margin: 15px;*/
     background-color: #ffffff;
     border: 3px solid black;  
+    top: 500 px;
 }
 
 #modal-container {
