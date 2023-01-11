@@ -7,7 +7,7 @@ let pokemonRepository = (function() {
     //only ul is in the html, the rest is here
     let addListItem = async function (pokemon){
         let newList = document.querySelector('ul'); 
-        let listItem = $('<li class="list-group-item"></li>');
+        let listItem = document.createElement('li');
         let button = $('<button type="button" class="btn btn-primary pokemon-button" data-toggle="modal" data-target="#pokemon-modal">' + pokemon.name + '</button>');
 
         listItem.appendChild(button);
